@@ -24,12 +24,11 @@
             android:layout_width="0dp"
             android:layout_height="38dp"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_grid"
+            android:src="@drawable/ic_grid"
             android:contentDescription="Grid"
             android:scaleType="centerInside"
             android:background="@drawable/key_special_bg"
-            android:layout_marginEnd="4dp"
-            android:tint="#FFFFFF"/>
+            android:layout_marginEnd="4dp"/>
 
         <!-- Globe Button (moved from bottom row) -->
         <ImageButton
@@ -37,12 +36,11 @@
             android:layout_width="0dp"
             android:layout_height="38dp"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_mapmode"
+            android:src="@drawable/ic_language"
             android:contentDescription="Language"
             android:scaleType="centerInside"
             android:background="@drawable/key_special_bg"
-            android:layout_marginEnd="4dp"
-            android:tint="#FFFFFF"/>
+            android:layout_marginEnd="4dp"/>
 
         <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
 
@@ -90,11 +88,10 @@
                 android:id="@+id/btnToggleTextScroll"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@android:drawable/ic_menu_view"
+                android:src="@drawable/ic_expand"
                 android:contentDescription="Expand"
                 android:scaleType="centerInside"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:tint="#AAAAAA"
                 android:padding="2dp"/>
         </LinearLayout>
 
@@ -202,7 +199,7 @@
 
         </LinearLayout>
 
-        <!-- ROW 3: SHIFT W X C V B N ' BACKSPACE -->
+        <!-- ROW 3: SHIFT W X C V B N APOSTROPHE BACKSPACE -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -366,7 +363,7 @@
             <Button android:id="@+id/keyExclaim" style="@style/KeyStyle" android:text="!"/>
             <Button android:id="@+id/keyQuestion" style="@style/KeyStyle" android:text="?"/>
             <Button android:id="@+id/keySlash" style="@style/KeyStyle" android:text="/"/>
-            <Button android:id="@+id/keyBackslash" style="@style/KeyStyle" android:text="\"/>
+            <Button android:id="@+id/keyBackslashSym" style="@style/KeyStyle" android:text="\"/>
 
         </LinearLayout>
 
