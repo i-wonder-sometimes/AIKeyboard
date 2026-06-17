@@ -6,6 +6,7 @@
     android:background="#000000"
     android:paddingBottom="8dp">
 
+    <!-- TOP BAR: 4 blocks (AI features) + label -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -17,6 +18,7 @@
         android:paddingBottom="4dp"
         android:gravity="center_vertical">
 
+        <!-- Block 1: Reply to copied text -->
         <Button
             android:id="@+id/btnBlock1"
             android:layout_width="0dp"
@@ -25,10 +27,11 @@
             android:text="⬛⬛\n⬛⬛"
             android:textSize="10sp"
             android:textColor="#FFFFFF"
-            android:background="@drawable/btn_gold_border"
+            android:background="@drawable/key_special_bg"
             android:layout_marginEnd="4dp"
             android:padding="2dp"/>
 
+        <!-- Block 2: placeholder -->
         <Button
             android:id="@+id/btnBlock2"
             android:layout_width="0dp"
@@ -37,10 +40,11 @@
             android:text="✏️"
             android:textSize="14sp"
             android:textColor="#FFFFFF"
-            android:background="@drawable/btn_gold_border"
+            android:background="@drawable/key_special_bg"
             android:layout_marginEnd="4dp"
             android:padding="2dp"/>
 
+        <!-- Block 3: placeholder -->
         <Button
             android:id="@+id/btnBlock3"
             android:layout_width="0dp"
@@ -49,10 +53,11 @@
             android:text="🌐"
             android:textSize="14sp"
             android:textColor="#FFFFFF"
-            android:background="@drawable/btn_gold_border"
+            android:background="@drawable/key_special_bg"
             android:layout_marginEnd="4dp"
             android:padding="2dp"/>
 
+        <!-- Block 4: placeholder -->
         <Button
             android:id="@+id/btnBlock4"
             android:layout_width="0dp"
@@ -61,7 +66,7 @@
             android:text="🎤"
             android:textSize="14sp"
             android:textColor="#FFFFFF"
-            android:background="@drawable/btn_gold_border"
+            android:background="@drawable/key_special_bg"
             android:layout_marginEnd="0dp"
             android:padding="2dp"/>
 
@@ -78,6 +83,7 @@
 
     </LinearLayout>
 
+    <!-- INLINE PANEL: shows when block 1 tapped (hidden by default) -->
     <LinearLayout
         android:id="@+id/panelCopiedText"
         android:layout_width="match_parent"
@@ -93,7 +99,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Copied Message"
+            android:text="📋 Copied Message"
             android:textColor="#FFD700"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -132,7 +138,7 @@
                 android:text="✕ Close"
                 android:textSize="11sp"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/btn_gold_border"
+                android:background="@drawable/key_special_bg"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"/>
 
@@ -140,6 +146,7 @@
 
     </LinearLayout>
 
+    <!-- ROW 1: A Z E R T Y U I O P -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -161,6 +168,7 @@
 
     </LinearLayout>
 
+    <!-- ROW 2: Q S D F G H J K L M -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -182,6 +190,7 @@
 
     </LinearLayout>
 
+    <!-- ROW 3: SHIFT W X C V B N ' BACKSPACE -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -224,6 +233,7 @@
 
     </LinearLayout>
 
+    <!-- ROW 4: ?123 emoji globe SPACE . ENTER -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -299,7 +309,7 @@
             android:layout_weight="1.8"
             android:text="↵"
             android:textColor="#FFFFFF"
-            android:background="@drawable/btn_gold_border"
+            android:background="@drawable/key_special_bg"
             android:textSize="18sp"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"/>
