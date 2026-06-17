@@ -1,14 +1,10 @@
 package com.aikeyboard.app;
 
 import android.app.AlertDialog;
-import android.animation.ArgbEvaluator;
-import android.animation.ValueAnimator;
 import android.content.ClipboardManager;
 import android.content.ClipData;
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
 import android.inputmethodservice.InputMethodService;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -47,7 +43,7 @@ public class AIKeyboardService extends InputMethodService {
     private final int[] symbolIds = {
         R.id.keyAt, R.id.keyHash, R.id.keyDollar, R.id.keyPercent,
         R.id.keyAmpersand, R.id.keyAsterisk, R.id.keyExclaim, R.id.keyQuestion,
-        R.id.keySlash, R.id.keyBackslash, R.id.keyParen1, R.id.keyParen2,
+        R.id.keySlash, R.id.keyBackslashSym, R.id.keyParen1, R.id.keyParen2,
         R.id.keyBracket1, R.id.keyBracket2, R.id.keyBrace1, R.id.keyBrace2,
         R.id.keyMinus, R.id.keyPlus, R.id.keyEqual, R.id.keyColon,
         R.id.keyQuote, R.id.keyComma
@@ -72,32 +68,42 @@ public class AIKeyboardService extends InputMethodService {
 
         // Grid button: Show clipboard panel
         ImageButton btnLayoutGrid = view.findViewById(R.id.btnLayoutGrid);
-        btnLayoutGrid.setOnClickListener(v -> handleShowCopiedText(view));
+        if (btnLayoutGrid != null) {
+            btnLayoutGrid.setOnClickListener(v -> handleShowCopiedText(view));
+        }
 
         // Globe button: Cycle language on click, open dialog on long-press
         ImageButton btnGlobeTop = view.findViewById(R.id.btnGlobeTop);
-        btnGlobeTop.setOnClickListener(v -> cycleLanguage(view));
-        btnGlobeTop.setOnLongClickListener(v -> {
-            showLanguageDialog();
-            return true;
-        });
+        if (btnGlobeTop != null) {
+            btnGlobeTop.setOnClickListener(v -> cycleLanguage(view));
+            btnGlobeTop.setOnLongClickListener(v -> {
+                showLanguageDialog();
+                return true;
+            });
+        }
 
         // === CLIPBOARD PANEL BUTTONS ===
 
         // Expand/collapse text scroll button
         ImageButton btnToggleTextScroll = view.findViewById(R.id.btnToggleTextScroll);
-        btnToggleTextScroll.setOnClickListener(v -> toggleTextScrollHeight(view));
+        if (btnToggleTextScroll != null) {
+            btnToggleTextScroll.setOnClickListener(v -> toggleTextScrollHeight(view));
+        }
 
         // Generate AI Reply button
         Button btnGenerateAiReply = view.findViewById(R.id.btnGenerateAiReply);
-        btnGenerateAiReply.setOnClickListener(v ->
-            Toast.makeText(this, "AI Reply generation coming soon!", Toast.LENGTH_SHORT).show());
+        if (btnGenerateAiReply != null) {
+            btnGenerateAiReply.setOnClickListener(v ->
+                Toast.makeText(this, "AI Reply generation coming soon!", Toast.LENGTH_SHORT).show());
+        }
 
         // Close clipboard panel
         Button btnClosePanelInline = view.findViewById(R.id.btnClosePanelInline);
-        btnClosePanelInline.setOnClickListener(v -> {
-            view.findViewById(R.id.panelCopiedText).setVisibility(View.GONE);
-        });
+        if (btnClosePanelInline != null) {
+            btnClosePanelInline.setOnClickListener(v -> {
+                view.findViewById(R.id.panelCopiedText).setVisibility(View.GONE);
+            });
+        }
 
         // === ALPHABET MODE LETTER KEYS ===
 
@@ -121,40 +127,54 @@ public class AIKeyboardService extends InputMethodService {
 
         // Shift
         Button keyShift = view.findViewById(R.id.keyShift);
-        keyShift.setOnClickListener(v -> {
-            isShiftOn = !isShiftOn;
-            updateShiftState(view);
-        });
+        if (keyShift != null) {
+            keyShift.setOnClickListener(v -> {
+                isShiftOn = !isShiftOn;
+                updateShiftState(view);
+            });
+        }
 
         // Backspace
         Button keyBackspace = view.findViewById(R.id.keyBackspace);
-        keyBackspace.setOnClickListener(v -> {
-            InputConnection ic = getCurrentInputConnection();
-            if (ic != null) ic.deleteSurroundingText(1, 0);
-        });
+        if (keyBackspace != null) {
+            keyBackspace.setOnClickListener(v -> {
+                InputConnection ic = getCurrentInputConnection();
+                if (ic != null) ic.deleteSurroundingText(1, 0);
+            });
+        }
 
         // === ALPHABET MODE BOTTOM ROW ===
 
         // ?123 button: Toggle to symbol mode
         Button keyNumbers = view.findViewById(R.id.keyNumbers);
-        keyNumbers.setOnClickListener(v -> toggleSymbolMode(view));
+        if (keyNumbers != null) {
+            keyNumbers.setOnClickListener(v -> toggleSymbolMode(view));
+        }
 
         // Emoji button
         Button keyEmoji = view.findViewById(R.id.keyEmoji);
-        keyEmoji.setOnClickListener(v ->
-            Toast.makeText(this, "Emoji picker coming soon!", Toast.LENGTH_SHORT).show());
+        if (keyEmoji != null) {
+            keyEmoji.setOnClickListener(v ->
+                Toast.makeText(this, "Emoji picker coming soon!", Toast.LENGTH_SHORT).show());
+        }
 
         // Space
         Button keySpace = view.findViewById(R.id.keySpace);
-        keySpace.setOnClickListener(v -> typeText(" "));
+        if (keySpace != null) {
+            keySpace.setOnClickListener(v -> typeText(" "));
+        }
 
         // Period
         Button keyPeriod = view.findViewById(R.id.keyPeriod);
-        keyPeriod.setOnClickListener(v -> typeText("."));
+        if (keyPeriod != null) {
+            keyPeriod.setOnClickListener(v -> typeText("."));
+        }
 
         // Enter
         Button keyEnter = view.findViewById(R.id.keyEnter);
-        keyEnter.setOnClickListener(v -> handleEnterKey());
+        if (keyEnter != null) {
+            keyEnter.setOnClickListener(v -> handleEnterKey());
+        }
 
         // === SYMBOL MODE NUMBER KEYS ===
 
@@ -176,19 +196,27 @@ public class AIKeyboardService extends InputMethodService {
 
         // ABC button: Return to alphabet mode
         Button keyABC = view.findViewById(R.id.keyABC);
-        keyABC.setOnClickListener(v -> toggleSymbolMode(view));
+        if (keyABC != null) {
+            keyABC.setOnClickListener(v -> toggleSymbolMode(view));
+        }
 
         // Space (symbol mode)
         Button keySpaceSymbol = view.findViewById(R.id.keySpaceSymbol);
-        keySpaceSymbol.setOnClickListener(v -> typeText(" "));
+        if (keySpaceSymbol != null) {
+            keySpaceSymbol.setOnClickListener(v -> typeText(" "));
+        }
 
         // Comma
-        Button keyComma = view.findViewById(R.id.keyComma);
-        keyComma.setOnClickListener(v -> typeText(","));
+        Button keyCommaBtn = view.findViewById(R.id.keyComma);
+        if (keyCommaBtn != null) {
+            keyCommaBtn.setOnClickListener(v -> typeText(","));
+        }
 
         // Enter (symbol mode)
         Button keyEnterSymbol = view.findViewById(R.id.keyEnterSymbol);
-        keyEnterSymbol.setOnClickListener(v -> handleEnterKey());
+        if (keyEnterSymbol != null) {
+            keyEnterSymbol.setOnClickListener(v -> handleEnterKey());
+        }
     }
 
     // ───────────────────────────────────────────────────────────────
@@ -202,13 +230,13 @@ public class AIKeyboardService extends InputMethodService {
         isSymbolMode = !isSymbolMode;
 
         if (isSymbolMode) {
-            layoutAlpha.setVisibility(View.GONE);
-            layoutSymbol.setVisibility(View.VISIBLE);
-            keyNumbers.setText("ABC");
+            if (layoutAlpha != null) layoutAlpha.setVisibility(View.GONE);
+            if (layoutSymbol != null) layoutSymbol.setVisibility(View.VISIBLE);
+            if (keyNumbers != null) keyNumbers.setText("ABC");
         } else {
-            layoutAlpha.setVisibility(View.VISIBLE);
-            layoutSymbol.setVisibility(View.GONE);
-            keyNumbers.setText("?123");
+            if (layoutAlpha != null) layoutAlpha.setVisibility(View.VISIBLE);
+            if (layoutSymbol != null) layoutSymbol.setVisibility(View.GONE);
+            if (keyNumbers != null) keyNumbers.setText("?123");
         }
     }
 
@@ -270,8 +298,12 @@ public class AIKeyboardService extends InputMethodService {
             return;
         }
 
-        tvText.setText(copiedText);
-        panel.setVisibility(View.VISIBLE);
+        if (tvText != null) {
+            tvText.setText(copiedText);
+        }
+        if (panel != null) {
+            panel.setVisibility(View.VISIBLE);
+        }
 
         // Reset scroll view height to default collapsed state
         isClipboardPanelExpanded = false;
