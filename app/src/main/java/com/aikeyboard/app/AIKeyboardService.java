@@ -1,5 +1,6 @@
 package com.aikeyboard.app;
 
+import android.app.AlertDialog;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.ClipboardManager;
@@ -9,10 +10,13 @@ import android.graphics.drawable.GradientDrawable;
 import android.inputmethodservice.InputMethodService;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +24,9 @@ public class AIKeyboardService extends InputMethodService {
 
     private boolean isShiftOn = false;
     private View keyboardView;
+    private boolean isSymbolMode = false;
+    private String currentLanguage = "English";
+    private boolean isClipboardPanelExpanded = false;
 
     // Letter IDs for AZERTY layout
     private final int[] letterIds = {
@@ -31,85 +38,69 @@ public class AIKeyboardService extends InputMethodService {
         R.id.keyN
     };
 
+    // Number/Symbol IDs
+    private final int[] numberIds = {
+        R.id.key1, R.id.key2, R.id.key3, R.id.key4, R.id.key5,
+        R.id.key6, R.id.key7, R.id.key8, R.id.key9, R.id.key0
+    };
+
+    private final int[] symbolIds = {
+        R.id.keyAt, R.id.keyHash, R.id.keyDollar, R.id.keyPercent,
+        R.id.keyAmpersand, R.id.keyAsterisk, R.id.keyExclaim, R.id.keyQuestion,
+        R.id.keySlash, R.id.keyBackslash, R.id.keyParen1, R.id.keyParen2,
+        R.id.keyBracket1, R.id.keyBracket2, R.id.keyBrace1, R.id.keyBrace2,
+        R.id.keyMinus, R.id.keyPlus, R.id.keyEqual, R.id.keyColon,
+        R.id.keyQuote, R.id.keyComma
+    };
+
+    private final String[] languages = {"English", "French", "Spanish"};
+    private int currentLanguageIndex = 0;
+
     @Override
     public View onCreateInputView() {
         keyboardView = getLayoutInflater().inflate(R.layout.keyboard_view, null);
         setupKeys(keyboardView);
-        startGoldBorderAnimation(keyboardView);
         return keyboardView;
     }
 
-    // ──────────────────────────────────────────────────────────────────
-    // Gold border pulse animation on the 4 block buttons + enter
-    // ──────────────────────────────────────────────────────────────────
-    private void startGoldBorderAnimation(View root) {
-        int[] blockIds = {
-            R.id.btnBlock1, R.id.btnBlock2, R.id.btnBlock3, R.id.btnBlock4,
-            R.id.keyEnter
-        };
-
-        int colorWhite  = 0xFFFFFFFF;
-        int colorGold   = 0xFFFFD700;
-
-        for (int id : blockIds) {
-            View btn = root.findViewById(id);
-            if (btn == null) continue;
-
-            // We need a mutable copy of the drawable to animate stroke color
-            GradientDrawable drawable = new GradientDrawable();
-            drawable.setShape(GradientDrawable.RECTANGLE);
-            drawable.setColor(0xFF000000);
-            drawable.setCornerRadius(dpToPx(8));
-            drawable.setStroke(dpToPx(2), colorWhite);
-            btn.setBackground(drawable);
-
-            // Stagger start offset per button for wave effect
-            long offset = id % 5 * 180L;
-
-            ValueAnimator animator = ValueAnimator.ofObject(
-                new ArgbEvaluator(), colorWhite, colorGold
-            );
-            animator.setDuration(900);
-            animator.setRepeatMode(ValueAnimator.REVERSE);
-            animator.setRepeatCount(ValueAnimator.INFINITE);
-            animator.setStartDelay(offset);
-            animator.addUpdateListener(anim -> {
-                int color = (int) anim.getAnimatedValue();
-                drawable.setStroke(dpToPx(2), color);
-            });
-            animator.start();
-        }
-    }
-
-    private int dpToPx(int dp) {
-        float density = getResources().getDisplayMetrics().density;
-        return Math.round(dp * density);
-    }
-
-    // ──────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────
     // Key setup
-    // ──────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────
     private void setupKeys(View view) {
 
-        // Block 1: Reply to copied text → shows inline panel
-        Button btnBlock1 = view.findViewById(R.id.btnBlock1);
-        btnBlock1.setOnClickListener(v -> handleShowCopiedText(view));
+        // === TOP BAR BUTTONS ===
 
-        // Block 2, 3, 4: placeholders
-        view.findViewById(R.id.btnBlock2).setOnClickListener(v ->
-            Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show());
-        view.findViewById(R.id.btnBlock3).setOnClickListener(v ->
-            Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show());
-        view.findViewById(R.id.btnBlock4).setOnClickListener(v ->
-            Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show());
+        // Grid button: Show clipboard panel
+        ImageButton btnLayoutGrid = view.findViewById(R.id.btnLayoutGrid);
+        btnLayoutGrid.setOnClickListener(v -> handleShowCopiedText(view));
 
-        // Close inline panel
-        Button btnClose = view.findViewById(R.id.btnClosePanelInline);
-        btnClose.setOnClickListener(v -> {
+        // Globe button: Cycle language on click, open dialog on long-press
+        ImageButton btnGlobeTop = view.findViewById(R.id.btnGlobeTop);
+        btnGlobeTop.setOnClickListener(v -> cycleLanguage(view));
+        btnGlobeTop.setOnLongClickListener(v -> {
+            showLanguageDialog();
+            return true;
+        });
+
+        // === CLIPBOARD PANEL BUTTONS ===
+
+        // Expand/collapse text scroll button
+        ImageButton btnToggleTextScroll = view.findViewById(R.id.btnToggleTextScroll);
+        btnToggleTextScroll.setOnClickListener(v -> toggleTextScrollHeight(view));
+
+        // Generate AI Reply button
+        Button btnGenerateAiReply = view.findViewById(R.id.btnGenerateAiReply);
+        btnGenerateAiReply.setOnClickListener(v ->
+            Toast.makeText(this, "AI Reply generation coming soon!", Toast.LENGTH_SHORT).show());
+
+        // Close clipboard panel
+        Button btnClosePanelInline = view.findViewById(R.id.btnClosePanelInline);
+        btnClosePanelInline.setOnClickListener(v -> {
             view.findViewById(R.id.panelCopiedText).setVisibility(View.GONE);
         });
 
-        // Letter keys
+        // === ALPHABET MODE LETTER KEYS ===
+
         for (int id : letterIds) {
             Button key = view.findViewById(id);
             if (key == null) continue;
@@ -142,49 +133,121 @@ public class AIKeyboardService extends InputMethodService {
             if (ic != null) ic.deleteSurroundingText(1, 0);
         });
 
+        // === ALPHABET MODE BOTTOM ROW ===
+
+        // ?123 button: Toggle to symbol mode
+        Button keyNumbers = view.findViewById(R.id.keyNumbers);
+        keyNumbers.setOnClickListener(v -> toggleSymbolMode(view));
+
+        // Emoji button
+        Button keyEmoji = view.findViewById(R.id.keyEmoji);
+        keyEmoji.setOnClickListener(v ->
+            Toast.makeText(this, "Emoji picker coming soon!", Toast.LENGTH_SHORT).show());
+
         // Space
         Button keySpace = view.findViewById(R.id.keySpace);
         keySpace.setOnClickListener(v -> typeText(" "));
-
-        // Enter — sends in Snapchat/all apps
-        Button keyEnter = view.findViewById(R.id.keyEnter);
-        keyEnter.setOnClickListener(v -> {
-            InputConnection ic = getCurrentInputConnection();
-            if (ic == null) return;
-
-            EditorInfo ei = getCurrentInputEditorInfo();
-            if (ei != null) {
-                int action = ei.imeOptions & EditorInfo.IME_MASK_ACTION;
-                // If the field has a send/go/search/done action, fire it
-                if (action == EditorInfo.IME_ACTION_SEND
-                    || action == EditorInfo.IME_ACTION_GO
-                    || action == EditorInfo.IME_ACTION_SEARCH
-                    || action == EditorInfo.IME_ACTION_DONE
-                    || action == EditorInfo.IME_ACTION_NEXT) {
-                    ic.performEditorAction(action);
-                    return;
-                }
-            }
-            // Otherwise insert a newline (regular text fields)
-            ic.commitText("\n", 1);
-        });
 
         // Period
         Button keyPeriod = view.findViewById(R.id.keyPeriod);
         keyPeriod.setOnClickListener(v -> typeText("."));
 
-        // Numbers / emoji / globe — placeholder
-        view.findViewById(R.id.keyNumbers).setOnClickListener(v ->
-            Toast.makeText(this, "Numbers coming soon!", Toast.LENGTH_SHORT).show());
-        view.findViewById(R.id.keyEmoji).setOnClickListener(v ->
-            Toast.makeText(this, "Emoji picker coming soon!", Toast.LENGTH_SHORT).show());
-        view.findViewById(R.id.keyGlobe).setOnClickListener(v ->
-            Toast.makeText(this, "Switch language coming soon!", Toast.LENGTH_SHORT).show());
+        // Enter
+        Button keyEnter = view.findViewById(R.id.keyEnter);
+        keyEnter.setOnClickListener(v -> handleEnterKey());
+
+        // === SYMBOL MODE NUMBER KEYS ===
+
+        for (int id : numberIds) {
+            Button key = view.findViewById(id);
+            if (key == null) continue;
+            key.setOnClickListener(v -> typeText(((Button) v).getText().toString()));
+        }
+
+        // === SYMBOL MODE SYMBOL KEYS ===
+
+        for (int id : symbolIds) {
+            Button key = view.findViewById(id);
+            if (key == null) continue;
+            key.setOnClickListener(v -> typeText(((Button) v).getText().toString()));
+        }
+
+        // === SYMBOL MODE BOTTOM ROW ===
+
+        // ABC button: Return to alphabet mode
+        Button keyABC = view.findViewById(R.id.keyABC);
+        keyABC.setOnClickListener(v -> toggleSymbolMode(view));
+
+        // Space (symbol mode)
+        Button keySpaceSymbol = view.findViewById(R.id.keySpaceSymbol);
+        keySpaceSymbol.setOnClickListener(v -> typeText(" "));
+
+        // Comma
+        Button keyComma = view.findViewById(R.id.keyComma);
+        keyComma.setOnClickListener(v -> typeText(","));
+
+        // Enter (symbol mode)
+        Button keyEnterSymbol = view.findViewById(R.id.keyEnterSymbol);
+        keyEnterSymbol.setOnClickListener(v -> handleEnterKey());
     }
 
-    // ──────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────
+    // Toggle between Alphabet and Symbol modes
+    // ───────────────────────────────────────────────────────────────
+    private void toggleSymbolMode(View view) {
+        LinearLayout layoutAlpha = view.findViewById(R.id.layoutAlphabetMode);
+        LinearLayout layoutSymbol = view.findViewById(R.id.layoutSymbolMode);
+        Button keyNumbers = view.findViewById(R.id.keyNumbers);
+
+        isSymbolMode = !isSymbolMode;
+
+        if (isSymbolMode) {
+            layoutAlpha.setVisibility(View.GONE);
+            layoutSymbol.setVisibility(View.VISIBLE);
+            keyNumbers.setText("ABC");
+        } else {
+            layoutAlpha.setVisibility(View.VISIBLE);
+            layoutSymbol.setVisibility(View.GONE);
+            keyNumbers.setText("?123");
+        }
+    }
+
+    // ───────────────────────────────────────────────────────────────
+    // Cycle through languages
+    // ───────────────────────────────────────────────────────────────
+    private void cycleLanguage(View view) {
+        currentLanguageIndex = (currentLanguageIndex + 1) % languages.length;
+        currentLanguage = languages[currentLanguageIndex];
+
+        Button keySpace = view.findViewById(R.id.keySpace);
+        if (keySpace != null) {
+            keySpace.setText(currentLanguage);
+        }
+
+        Toast.makeText(this, "Language: " + currentLanguage, Toast.LENGTH_SHORT).show();
+    }
+
+    // ───────────────────────────────────────────────────────────────
+    // Show language selection dialog
+    // ───────────────────────────────────────────────────────────────
+    private void showLanguageDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog);
+        builder.setTitle("Select Language");
+        builder.setItems(languages, (dialog, which) -> {
+            currentLanguageIndex = which;
+            currentLanguage = languages[which];
+            Button keySpace = keyboardView.findViewById(R.id.keySpace);
+            if (keySpace != null) {
+                keySpace.setText(currentLanguage);
+            }
+            Toast.makeText(this, "Language: " + currentLanguage, Toast.LENGTH_SHORT).show();
+        });
+        builder.show();
+    }
+
+    // ───────────────────────────────────────────────────────────────
     // Show copied text panel INSIDE the keyboard
-    // ──────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────
     private void handleShowCopiedText(View root) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         String copiedText = "";
@@ -198,7 +261,7 @@ public class AIKeyboardService extends InputMethodService {
         }
 
         LinearLayout panel = root.findViewById(R.id.panelCopiedText);
-        TextView tvText    = root.findViewById(R.id.tvCopiedTextInline);
+        TextView tvText = root.findViewById(R.id.tvCopiedTextInline);
 
         if (copiedText.isEmpty()) {
             Toast.makeText(this,
@@ -209,11 +272,65 @@ public class AIKeyboardService extends InputMethodService {
 
         tvText.setText(copiedText);
         panel.setVisibility(View.VISIBLE);
+
+        // Reset scroll view height to default collapsed state
+        isClipboardPanelExpanded = false;
+        resetTextScrollHeight(root);
     }
 
-    // ──────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────
+    // Toggle ScrollView height for clipboard panel
+    // ───────────────────────────────────────────────────────────────
+    private void toggleTextScrollHeight(View root) {
+        ScrollView sv = root.findViewById(R.id.svCopiedText);
+        if (sv == null) return;
+
+        if (isClipboardPanelExpanded) {
+            resetTextScrollHeight(root);
+        } else {
+            // Expand to 150dp
+            ViewGroup.LayoutParams params = sv.getLayoutParams();
+            params.height = dpToPx(150);
+            sv.setLayoutParams(params);
+            isClipboardPanelExpanded = true;
+        }
+    }
+
+    private void resetTextScrollHeight(View root) {
+        ScrollView sv = root.findViewById(R.id.svCopiedText);
+        if (sv == null) return;
+
+        ViewGroup.LayoutParams params = sv.getLayoutParams();
+        params.height = dpToPx(60);
+        sv.setLayoutParams(params);
+        isClipboardPanelExpanded = false;
+    }
+
+    // ───────────────────────────────────────────────────────────────
+    // Handle Enter key
+    // ───────────────────────────────────────────────────────────────
+    private void handleEnterKey() {
+        InputConnection ic = getCurrentInputConnection();
+        if (ic == null) return;
+
+        EditorInfo ei = getCurrentInputEditorInfo();
+        if (ei != null) {
+            int action = ei.imeOptions & EditorInfo.IME_MASK_ACTION;
+            if (action == EditorInfo.IME_ACTION_SEND
+                || action == EditorInfo.IME_ACTION_GO
+                || action == EditorInfo.IME_ACTION_SEARCH
+                || action == EditorInfo.IME_ACTION_DONE
+                || action == EditorInfo.IME_ACTION_NEXT) {
+                ic.performEditorAction(action);
+                return;
+            }
+        }
+        ic.commitText("\n", 1);
+    }
+
+    // ───────────────────────────────────────────────────────────────
     // Helpers
-    // ──────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────
     private void typeText(String text) {
         InputConnection ic = getCurrentInputConnection();
         if (ic != null) ic.commitText(text, 1);
@@ -226,5 +343,10 @@ public class AIKeyboardService extends InputMethodService {
             String current = key.getText().toString();
             key.setText(isShiftOn ? current.toUpperCase() : current.toLowerCase());
         }
+    }
+
+    private int dpToPx(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
     }
 }
