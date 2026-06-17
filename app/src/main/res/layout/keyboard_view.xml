@@ -3,59 +3,70 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#000000"
-    android:paddingBottom="8dp">
+    android:background="#1A1A1A"
+    android:paddingBottom="4dp">
 
-    <!-- TOP BAR: Grid button, language globe, label -->
+    <!-- ═══════════════════════════════════════════════════════
+         TOP UTILITY BAR: Grid (clipboard) + Globe (language)
+         ═══════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="44dp"
         android:orientation="horizontal"
-        android:background="#000000"
-        android:paddingStart="6dp"
-        android:paddingEnd="6dp"
-        android:paddingTop="6dp"
+        android:background="#111111"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="4dp"
         android:paddingBottom="4dp"
         android:gravity="center_vertical">
 
-        <!-- Grid/Layout Button (replaces 4-block emoji) -->
+        <!-- Grid Button: shows clipboard panel with AI Reply -->
         <ImageButton
             android:id="@+id/btnLayoutGrid"
-            android:layout_width="0dp"
-            android:layout_height="38dp"
-            android:layout_weight="1"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
             android:src="@drawable/ic_grid"
-            android:contentDescription="Grid"
+            android:contentDescription="Clipboard / AI Reply"
             android:scaleType="centerInside"
             android:background="@drawable/key_special_bg"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginEnd="6dp"
+            android:padding="8dp"/>
 
-        <!-- Globe Button (moved from bottom row) -->
+        <!-- Globe Button: tap = cycle language, long-press = select dialog -->
         <ImageButton
             android:id="@+id/btnGlobeTop"
-            android:layout_width="0dp"
-            android:layout_height="38dp"
-            android:layout_weight="1"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
             android:src="@drawable/ic_language"
-            android:contentDescription="Language"
+            android:contentDescription="Switch Language"
             android:scaleType="centerInside"
             android:background="@drawable/key_special_bg"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginEnd="6dp"
+            android:padding="8dp"/>
 
-        <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
+        <!-- Keyboard label -->
         <TextView
             android:id="@+id/tvKeyboardLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AI ⌨"
-            android:textColor="#888888"
-            android:textSize="12sp"
-            android:layout_marginStart="6dp"/>
+            android:text="AI Keyboard"
+            android:textColor="#555555"
+            android:textSize="11sp"
+            android:letterSpacing="0.05"
+            android:layout_marginEnd="2dp"/>
 
     </LinearLayout>
 
-    <!-- INLINE CLIPBOARD PANEL: hidden by default, shows copied text inside keyboard -->
+    <!-- ═══════════════════════════════════════════════════════
+         INLINE CLIPBOARD PANEL (hidden by default)
+         Shows copied text + Generate AI Reply button
+         ═══════════════════════════════════════════════════════ -->
     <LinearLayout
         android:id="@+id/panelCopiedText"
         android:layout_width="match_parent"
@@ -64,43 +75,54 @@
         android:background="#0D0D0D"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:visibility="gone">
 
+        <!-- Panel header row: label + toggle + close -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginBottom="6dp">
+
+            <!-- Clipboard icon + label -->
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_grid"
+                android:scaleType="centerInside"
+                android:layout_marginEnd="6dp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="📋 Clipboard"
-                android:textColor="#FFFFFF"
+                android:text="Clipboard"
+                android:textColor="#BBBBBB"
                 android:textSize="12sp"
                 android:textStyle="bold"/>
 
+            <!-- Expand/Collapse toggle arrow -->
             <ImageButton
                 android:id="@+id/btnToggleTextScroll"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_expand"
-                android:contentDescription="Expand"
+                android:contentDescription="Expand or collapse clipboard text"
                 android:scaleType="centerInside"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="2dp"/>
+                android:padding="4dp"/>
+
         </LinearLayout>
 
-        <!-- ScrollView for long text -->
+        <!-- ScrollView wrapping the copied text – collapses/expands via toggle -->
         <ScrollView
             android:id="@+id/svCopiedText"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#1A1A1A"
+            android:layout_height="64dp"
+            android:background="#1C1C1C"
             android:layout_marginBottom="8dp">
 
             <TextView
@@ -110,59 +132,65 @@
                 android:text=""
                 android:textColor="#CCCCCC"
                 android:textSize="13sp"
+                android:lineSpacingMultiplier="1.4"
                 android:padding="10dp"/>
 
         </ScrollView>
 
-        <!-- Action Buttons -->
+        <!-- Action row: Generate AI Reply  |  Close -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
             <Button
                 android:id="@+id/btnGenerateAiReply"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Generate AI Reply"
                 android:textSize="12sp"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/key_enter_bg"
-                android:layout_marginEnd="6dp"/>
+                android:layout_marginEnd="6dp"
+                android:padding="0dp"/>
 
             <Button
                 android:id="@+id/btnClosePanelInline"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:text="Close"
                 android:textSize="12sp"
-                android:textColor="#FFFFFF"
+                android:textColor="#AAAAAA"
                 android:background="@drawable/key_special_bg"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"/>
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:padding="0dp"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <!-- ALPHABET MODE LAYOUT (default, visible) -->
+    <!-- ═══════════════════════════════════════════════════════
+         ALPHABET MODE LAYOUT (visible by default)
+         ═══════════════════════════════════════════════════════ -->
     <LinearLayout
         android:id="@+id/layoutAlphabetMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingTop="2dp"
         android:visibility="visible">
 
         <!-- ROW 1: A Z E R T Y U I O P -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="46dp"
             android:orientation="horizontal"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
-            android:paddingTop="4dp">
+            android:paddingTop="3dp">
 
             <Button android:id="@+id/keyA" style="@style/KeyStyle" android:text="a"/>
             <Button android:id="@+id/keyZ" style="@style/KeyStyle" android:text="z"/>
@@ -177,14 +205,14 @@
 
         </LinearLayout>
 
-        <!-- ROW 2: Q S D F G H J K L M -->
+        <!-- ROW 2: Q S D F G H J K L M (slightly inset like Gboard) -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="46dp"
             android:orientation="horizontal"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:paddingTop="4dp">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="3dp">
 
             <Button android:id="@+id/keyQ" style="@style/KeyStyle" android:text="q"/>
             <Button android:id="@+id/keyS" style="@style/KeyStyle" android:text="s"/>
@@ -199,26 +227,28 @@
 
         </LinearLayout>
 
-        <!-- ROW 3: SHIFT W X C V B N APOSTROPHE BACKSPACE -->
+        <!-- ROW 3: SHIFT  W X C V B N '  BACKSPACE -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="46dp"
             android:orientation="horizontal"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
-            android:paddingTop="4dp">
+            android:paddingTop="3dp">
 
-            <Button
+            <!-- Shift: ImageButton with SVG arrow -->
+            <ImageButton
                 android:id="@+id/keyShift"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:text="⇧"
-                android:textColor="#FFFFFF"
+                android:src="@drawable/ic_shift"
+                android:scaleType="centerInside"
+                android:contentDescription="Shift"
                 android:background="@drawable/key_special_bg"
-                android:textSize="16sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="8dp"/>
 
             <Button android:id="@+id/keyW" style="@style/KeyStyle" android:text="w"/>
             <Button android:id="@+id/keyX" style="@style/KeyStyle" android:text="x"/>
@@ -228,109 +258,127 @@
             <Button android:id="@+id/keyN" style="@style/KeyStyle" android:text="n"/>
             <Button android:id="@+id/keyApostrophe" style="@style/KeyStyle" android:text="'"/>
 
-            <Button
+            <!-- Backspace: ImageButton with SVG -->
+            <ImageButton
                 android:id="@+id/keyBackspace"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:text="⌫"
-                android:textColor="#FFFFFF"
+                android:src="@drawable/ic_backspace"
+                android:scaleType="centerInside"
+                android:contentDescription="Backspace"
                 android:background="@drawable/key_special_bg"
-                android:textSize="16sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="8dp"/>
 
         </LinearLayout>
 
-        <!-- ROW 4: ?123  emoji  SPACE  .  ENTER -->
+        <!-- ROW 4: ?123  😊  SPACE(language)  .  ENTER -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
-            android:paddingTop="4dp">
+            android:paddingTop="3dp">
 
+            <!-- ?123 toggle -->
             <Button
                 android:id="@+id/keyNumbers"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.5"
+                android:layout_weight="1.6"
                 android:text="?123"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/key_special_bg"
                 android:textSize="11sp"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
-            <Button
+            <!-- Emoji button (SVG smiley) -->
+            <ImageButton
                 android:id="@+id/keyEmoji"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="☺"
-                android:textColor="#FFFFFF"
+                android:src="@drawable/ic_emoji"
+                android:scaleType="centerInside"
+                android:contentDescription="Emoji"
                 android:background="@drawable/key_special_bg"
-                android:textSize="16sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="8dp"/>
 
+            <!-- Space bar: shows current language, long-press = switch keyboard -->
             <Button
                 android:id="@+id/keySpace"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:text="English"
-                android:textColor="#AAAAAA"
+                android:textColor="#888888"
                 android:background="@drawable/key_space_bg"
-                android:textSize="13sp"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.08"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
+            <!-- Period key -->
             <Button
                 android:id="@+id/keyPeriod"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
+                android:layout_weight="0.9"
                 android:text="."
                 android:textColor="#FFFFFF"
                 android:background="@drawable/key_normal_bg"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
-            <Button
+            <!-- Enter: ImageButton with return arrow SVG -->
+            <ImageButton
                 android:id="@+id/keyEnter"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.8"
-                android:text="↵"
-                android:textColor="#FFFFFF"
+                android:src="@drawable/ic_enter"
+                android:scaleType="centerInside"
+                android:contentDescription="Enter"
                 android:background="@drawable/key_enter_bg"
-                android:textSize="18sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="8dp"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <!-- SYMBOL/NUMBER MODE LAYOUT (hidden by default) -->
+    <!-- ═══════════════════════════════════════════════════════
+         SYMBOL / NUMBER MODE LAYOUT (hidden by default)
+         ═══════════════════════════════════════════════════════ -->
     <LinearLayout
         android:id="@+id/layoutSymbolMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingTop="2dp"
         android:visibility="gone">
 
-        <!-- ROW 1: Numbers 1-0 -->
+        <!-- ROW 1: 1 2 3 4 5 6 7 8 9 0 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="46dp"
             android:orientation="horizontal"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
-            android:paddingTop="4dp">
+            android:paddingTop="3dp">
 
             <Button android:id="@+id/key1" style="@style/KeyStyle" android:text="1"/>
             <Button android:id="@+id/key2" style="@style/KeyStyle" android:text="2"/>
@@ -345,118 +393,130 @@
 
         </LinearLayout>
 
-        <!-- ROW 2: Symbols Part 1 -->
+        <!-- ROW 2: @ # $ % &amp; * ! ? / \ -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="46dp"
             android:orientation="horizontal"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
-            android:paddingTop="4dp">
+            android:paddingTop="3dp">
 
-            <Button android:id="@+id/keyAt" style="@style/KeyStyle" android:text="@"/>
-            <Button android:id="@+id/keyHash" style="@style/KeyStyle" android:text="#"/>
-            <Button android:id="@+id/keyDollar" style="@style/KeyStyle" android:text="$"/>
-            <Button android:id="@+id/keyPercent" style="@style/KeyStyle" android:text="%"/>
-            <Button android:id="@+id/keyAmpersand" style="@style/KeyStyle" android:text="&amp;"/>
-            <Button android:id="@+id/keyAsterisk" style="@style/KeyStyle" android:text="*"/>
-            <Button android:id="@+id/keyExclaim" style="@style/KeyStyle" android:text="!"/>
-            <Button android:id="@+id/keyQuestion" style="@style/KeyStyle" android:text="?"/>
-            <Button android:id="@+id/keySlash" style="@style/KeyStyle" android:text="/"/>
+            <Button android:id="@+id/keyAt"         style="@style/KeyStyle" android:text="@"/>
+            <Button android:id="@+id/keyHash"        style="@style/KeyStyle" android:text="#"/>
+            <Button android:id="@+id/keyDollar"      style="@style/KeyStyle" android:text="$"/>
+            <Button android:id="@+id/keyPercent"     style="@style/KeyStyle" android:text="%"/>
+            <Button android:id="@+id/keyAmpersand"   style="@style/KeyStyle" android:text="&amp;"/>
+            <Button android:id="@+id/keyAsterisk"    style="@style/KeyStyle" android:text="*"/>
+            <Button android:id="@+id/keyExclaim"     style="@style/KeyStyle" android:text="!"/>
+            <Button android:id="@+id/keyQuestion"    style="@style/KeyStyle" android:text="?"/>
+            <Button android:id="@+id/keySlash"       style="@style/KeyStyle" android:text="/"/>
             <Button android:id="@+id/keyBackslashSym" style="@style/KeyStyle" android:text="\"/>
 
         </LinearLayout>
 
-        <!-- ROW 3: Symbols Part 2 -->
+        <!-- ROW 3: ( ) [ ] { } - + = : -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="46dp"
             android:orientation="horizontal"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
-            android:paddingTop="4dp">
+            android:paddingTop="3dp">
 
-            <Button android:id="@+id/keyParen1" style="@style/KeyStyle" android:text="("/>
-            <Button android:id="@+id/keyParen2" style="@style/KeyStyle" android:text=")"/>
+            <Button android:id="@+id/keyParen1"   style="@style/KeyStyle" android:text="("/>
+            <Button android:id="@+id/keyParen2"   style="@style/KeyStyle" android:text=")"/>
             <Button android:id="@+id/keyBracket1" style="@style/KeyStyle" android:text="["/>
             <Button android:id="@+id/keyBracket2" style="@style/KeyStyle" android:text="]"/>
-            <Button android:id="@+id/keyBrace1" style="@style/KeyStyle" android:text="{"/>
-            <Button android:id="@+id/keyBrace2" style="@style/KeyStyle" android:text="}"/>
-            <Button android:id="@+id/keyMinus" style="@style/KeyStyle" android:text="-"/>
-            <Button android:id="@+id/keyPlus" style="@style/KeyStyle" android:text="+"/>
-            <Button android:id="@+id/keyEqual" style="@style/KeyStyle" android:text="="/>
-            <Button android:id="@+id/keyColon" style="@style/KeyStyle" android:text=":"/>
+            <Button android:id="@+id/keyBrace1"   style="@style/KeyStyle" android:text="{"/>
+            <Button android:id="@+id/keyBrace2"   style="@style/KeyStyle" android:text="}"/>
+            <Button android:id="@+id/keyMinus"    style="@style/KeyStyle" android:text="-"/>
+            <Button android:id="@+id/keyPlus"     style="@style/KeyStyle" android:text="+"/>
+            <Button android:id="@+id/keyEqual"    style="@style/KeyStyle" android:text="="/>
+            <Button android:id="@+id/keyColon"    style="@style/KeyStyle" android:text=":"/>
 
         </LinearLayout>
 
-        <!-- ROW 4: ABC button + space + backspace + enter -->
+        <!-- ROW 4: ABC  '  SPACE  ,  BACKSPACE(sym)  ENTER(sym) -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
-            android:paddingTop="4dp">
+            android:paddingTop="3dp">
 
+            <!-- ABC: return to alpha mode -->
             <Button
                 android:id="@+id/keyABC"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.5"
+                android:layout_weight="1.6"
                 android:text="ABC"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/key_special_bg"
                 android:textSize="11sp"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
+            <!-- Quote key -->
             <Button
                 android:id="@+id/keyQuote"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="'"
+                android:text="&quot;"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/key_special_bg"
+                android:background="@drawable/key_normal_bg"
                 android:textSize="16sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
+            <!-- Space (symbol mode) -->
             <Button
                 android:id="@+id/keySpaceSymbol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:text="Space"
-                android:textColor="#AAAAAA"
+                android:textColor="#888888"
                 android:background="@drawable/key_space_bg"
-                android:textSize="13sp"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
+            <!-- Comma -->
             <Button
                 android:id="@+id/keyComma"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
+                android:layout_weight="0.9"
                 android:text=","
                 android:textColor="#FFFFFF"
                 android:background="@drawable/key_normal_bg"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
-            <Button
+            <!-- Enter (symbol mode) -->
+            <ImageButton
                 android:id="@+id/keyEnterSymbol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.8"
-                android:text="↵"
-                android:textColor="#FFFFFF"
+                android:src="@drawable/ic_enter"
+                android:scaleType="centerInside"
+                android:contentDescription="Enter"
                 android:background="@drawable/key_enter_bg"
-                android:textSize="18sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="8dp"/>
 
         </LinearLayout>
 
