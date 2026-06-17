@@ -3,34 +3,76 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#1A1A2E"
+    android:background="#000000"
     android:paddingBottom="8dp">
 
-    <!-- AI Reply Button Bar -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- TOP BAR: 4 blocks (AI features) + label                        -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:orientation="horizontal"
-        android:background="#16213E"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
+        android:background="#000000"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="4dp"
         android:gravity="center_vertical">
 
+        <!-- Block 1: Reply to copied text -->
         <Button
-            android:id="@+id/btnAiReply"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:text="✨ Reply to copied text"
-            android:textSize="13sp"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/btn_ai_bg"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp" />
-
-        <View
+            android:id="@+id/btnBlock1"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:text="⬛⬛\n⬛⬛"
+            android:textSize="10sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_gold_border"
+            android:layout_marginEnd="4dp"
+            android:padding="2dp"/>
+
+        <!-- Block 2: placeholder -->
+        <Button
+            android:id="@+id/btnBlock2"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:text="✏️"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_gold_border"
+            android:layout_marginEnd="4dp"
+            android:padding="2dp"/>
+
+        <!-- Block 3: placeholder -->
+        <Button
+            android:id="@+id/btnBlock3"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:text="🌐"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_gold_border"
+            android:layout_marginEnd="4dp"
+            android:padding="2dp"/>
+
+        <!-- Block 4: placeholder -->
+        <Button
+            android:id="@+id/btnBlock4"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:text="🎤"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_gold_border"
+            android:layout_marginEnd="0dp"
+            android:padding="2dp"/>
+
+        <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/tvKeyboardLabel"
@@ -38,21 +80,89 @@
             android:layout_height="wrap_content"
             android:text="AI ⌨"
             android:textColor="#888888"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_marginStart="6dp"/>
 
     </LinearLayout>
 
-    <!-- Row 1: Q W E R T Y U I O P -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- INLINE PANEL: shows when block 1 tapped (hidden by default)    -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/panelCopiedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#0D0D0D"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📋 Copied Message"
+            android:textColor="#FFD700"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/tvCopiedTextInline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#CCCCCC"
+            android:textSize="14sp"
+            android:background="#1A1A1A"
+            android:padding="10dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Text seen ✓"
+                android:textColor="#FFD700"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/btnClosePanelInline"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="✕ Close"
+                android:textSize="11sp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/btn_gold_border"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ROW 1: A Z E R T Y U I O P  (AZERTY)                          -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
         android:paddingTop="4dp">
 
-        <Button android:id="@+id/keyQ" style="@style/KeyStyle" android:text="q"/>
-        <Button android:id="@+id/keyW" style="@style/KeyStyle" android:text="w"/>
+        <Button android:id="@+id/keyA" style="@style/KeyStyle" android:text="a"/>
+        <Button android:id="@+id/keyZ" style="@style/KeyStyle" android:text="z"/>
         <Button android:id="@+id/keyE" style="@style/KeyStyle" android:text="e"/>
         <Button android:id="@+id/keyR" style="@style/KeyStyle" android:text="r"/>
         <Button android:id="@+id/keyT" style="@style/KeyStyle" android:text="t"/>
@@ -64,16 +174,18 @@
 
     </LinearLayout>
 
-    <!-- Row 2: A S D F G H J K L -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ROW 2: Q S D F G H J K L M  (AZERTY)                          -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:paddingTop="4dp">
 
-        <Button android:id="@+id/keyA" style="@style/KeyStyle" android:text="a"/>
+        <Button android:id="@+id/keyQ" style="@style/KeyStyle" android:text="q"/>
         <Button android:id="@+id/keyS" style="@style/KeyStyle" android:text="s"/>
         <Button android:id="@+id/keyD" style="@style/KeyStyle" android:text="d"/>
         <Button android:id="@+id/keyF" style="@style/KeyStyle" android:text="f"/>
@@ -82,16 +194,19 @@
         <Button android:id="@+id/keyJ" style="@style/KeyStyle" android:text="j"/>
         <Button android:id="@+id/keyK" style="@style/KeyStyle" android:text="k"/>
         <Button android:id="@+id/keyL" style="@style/KeyStyle" android:text="l"/>
+        <Button android:id="@+id/keyM" style="@style/KeyStyle" android:text="m"/>
 
     </LinearLayout>
 
-    <!-- Row 3: SHIFT Z X C V B N M BACKSPACE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ROW 3: SHIFT W X C V B N ' BACKSPACE  (AZERTY)                -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
         android:paddingTop="4dp">
 
         <Button
@@ -106,13 +221,13 @@
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"/>
 
-        <Button android:id="@+id/keyZ" style="@style/KeyStyle" android:text="z"/>
+        <Button android:id="@+id/keyW" style="@style/KeyStyle" android:text="w"/>
         <Button android:id="@+id/keyX" style="@style/KeyStyle" android:text="x"/>
         <Button android:id="@+id/keyC" style="@style/KeyStyle" android:text="c"/>
         <Button android:id="@+id/keyV" style="@style/KeyStyle" android:text="v"/>
         <Button android:id="@+id/keyB" style="@style/KeyStyle" android:text="b"/>
         <Button android:id="@+id/keyN" style="@style/KeyStyle" android:text="n"/>
-        <Button android:id="@+id/keyM" style="@style/KeyStyle" android:text="m"/>
+        <Button android:id="@+id/keyApostrophe" style="@style/KeyStyle" android:text="'"/>
 
         <Button
             android:id="@+id/keyBackspace"
@@ -128,13 +243,15 @@
 
     </LinearLayout>
 
-    <!-- Row 4: 123 , SPACE . ENTER -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- ROW 4: ?123  emoji  globe  SPACE  .  ENTER                     -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:orientation="horizontal"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
         android:paddingTop="4dp">
 
         <Button
@@ -142,22 +259,34 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:text="123"
+            android:text="?123"
             android:textColor="#FFFFFF"
             android:background="@drawable/key_special_bg"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"/>
 
         <Button
-            android:id="@+id/keyComma"
+            android:id="@+id/keyEmoji"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text=","
+            android:text="☺"
             android:textColor="#FFFFFF"
-            android:background="@drawable/key_normal_bg"
+            android:background="@drawable/key_special_bg"
             android:textSize="16sp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"/>
+
+        <Button
+            android:id="@+id/keyGlobe"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="🌐"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/key_special_bg"
+            android:textSize="14sp"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"/>
 
@@ -165,8 +294,8 @@
             android:id="@+id/keySpace"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="space"
+            android:layout_weight="4"
+            android:text="English"
             android:textColor="#AAAAAA"
             android:background="@drawable/key_space_bg"
             android:textSize="13sp"
@@ -177,7 +306,7 @@
             android:id="@+id/keyPeriod"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:text="."
             android:textColor="#FFFFFF"
             android:background="@drawable/key_normal_bg"
@@ -189,10 +318,10 @@
             android:id="@+id/keyEnter"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
+            android:layout_weight="1.8"
             android:text="↵"
             android:textColor="#FFFFFF"
-            android:background="@drawable/btn_ai_bg"
+            android:background="@drawable/btn_gold_border"
             android:textSize="18sp"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"/>
