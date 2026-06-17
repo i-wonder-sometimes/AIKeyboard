@@ -6,9 +6,6 @@
     android:background="#000000"
     android:paddingBottom="8dp">
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- TOP BAR: 4 blocks (AI features) + label                        -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -20,7 +17,6 @@
         android:paddingBottom="4dp"
         android:gravity="center_vertical">
 
-        <!-- Block 1: Reply to copied text -->
         <Button
             android:id="@+id/btnBlock1"
             android:layout_width="0dp"
@@ -33,7 +29,6 @@
             android:layout_marginEnd="4dp"
             android:padding="2dp"/>
 
-        <!-- Block 2: placeholder -->
         <Button
             android:id="@+id/btnBlock2"
             android:layout_width="0dp"
@@ -46,7 +41,6 @@
             android:layout_marginEnd="4dp"
             android:padding="2dp"/>
 
-        <!-- Block 3: placeholder -->
         <Button
             android:id="@+id/btnBlock3"
             android:layout_width="0dp"
@@ -59,7 +53,6 @@
             android:layout_marginEnd="4dp"
             android:padding="2dp"/>
 
-        <!-- Block 4: placeholder -->
         <Button
             android:id="@+id/btnBlock4"
             android:layout_width="0dp"
@@ -85,9 +78,6 @@
 
     </LinearLayout>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- INLINE PANEL: shows when block 1 tapped (hidden by default)    -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:id="@+id/panelCopiedText"
         android:layout_width="match_parent"
@@ -103,7 +93,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📋 Copied Message"
+            android:text="Copied Message"
             android:textColor="#FFD700"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -150,9 +140,6 @@
 
     </LinearLayout>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- ROW 1: A Z E R T Y U I O P  (AZERTY)                          -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -174,9 +161,6 @@
 
     </LinearLayout>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- ROW 2: Q S D F G H J K L M  (AZERTY)                          -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -198,9 +182,6 @@
 
     </LinearLayout>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- ROW 3: SHIFT W X C V B N ' BACKSPACE  (AZERTY)                -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -243,9 +224,6 @@
 
     </LinearLayout>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- ROW 4: ?123  emoji  globe  SPACE  .  ENTER                     -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
