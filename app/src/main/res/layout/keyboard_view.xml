@@ -6,9 +6,6 @@
     android:background="#1A1A1A"
     android:paddingBottom="4dp">
 
-    <!-- ═══════════════════════════════════════════════════════
-         TOP UTILITY BAR: Grid (clipboard) + Globe (language)
-         ═══════════════════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="44dp"
@@ -20,7 +17,6 @@
         android:paddingBottom="4dp"
         android:gravity="center_vertical">
 
-        <!-- Grid Button: shows clipboard panel with AI Reply -->
         <ImageButton
             android:id="@+id/btnLayoutGrid"
             android:layout_width="40dp"
@@ -32,7 +28,6 @@
             android:layout_marginEnd="6dp"
             android:padding="8dp"/>
 
-        <!-- Globe Button: tap = cycle language, long-press = select dialog -->
         <ImageButton
             android:id="@+id/btnGlobeTop"
             android:layout_width="40dp"
@@ -44,13 +39,11 @@
             android:layout_marginEnd="6dp"
             android:padding="8dp"/>
 
-        <!-- Spacer -->
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <!-- Keyboard label -->
         <TextView
             android:id="@+id/tvKeyboardLabel"
             android:layout_width="wrap_content"
@@ -63,10 +56,6 @@
 
     </LinearLayout>
 
-    <!-- ═══════════════════════════════════════════════════════
-         INLINE CLIPBOARD PANEL (hidden by default)
-         Shows copied text + Generate AI Reply button
-         ═══════════════════════════════════════════════════════ -->
     <LinearLayout
         android:id="@+id/panelCopiedText"
         android:layout_width="match_parent"
@@ -79,7 +68,6 @@
         android:paddingBottom="8dp"
         android:visibility="gone">
 
-        <!-- Panel header row: label + toggle + close -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="32dp"
@@ -87,7 +75,6 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="6dp">
 
-            <!-- Clipboard icon + label -->
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
@@ -104,7 +91,6 @@
                 android:textSize="12sp"
                 android:textStyle="bold"/>
 
-            <!-- Expand/Collapse toggle arrow -->
             <ImageButton
                 android:id="@+id/btnToggleTextScroll"
                 android:layout_width="32dp"
@@ -117,7 +103,6 @@
 
         </LinearLayout>
 
-        <!-- ScrollView wrapping the copied text – collapses/expands via toggle -->
         <ScrollView
             android:id="@+id/svCopiedText"
             android:layout_width="match_parent"
@@ -137,7 +122,6 @@
 
         </ScrollView>
 
-        <!-- Action row: Generate AI Reply  |  Close -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="38dp"
@@ -172,9 +156,6 @@
 
     </LinearLayout>
 
-    <!-- ═══════════════════════════════════════════════════════
-         ALPHABET MODE LAYOUT (visible by default)
-         ═══════════════════════════════════════════════════════ -->
     <LinearLayout
         android:id="@+id/layoutAlphabetMode"
         android:layout_width="match_parent"
@@ -183,7 +164,6 @@
         android:paddingTop="2dp"
         android:visibility="visible">
 
-        <!-- ROW 1: A Z E R T Y U I O P -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -205,7 +185,6 @@
 
         </LinearLayout>
 
-        <!-- ROW 2: Q S D F G H J K L M (slightly inset like Gboard) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -227,7 +206,6 @@
 
         </LinearLayout>
 
-        <!-- ROW 3: SHIFT  W X C V B N '  BACKSPACE -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -236,7 +214,6 @@
             android:paddingEnd="3dp"
             android:paddingTop="3dp">
 
-            <!-- Shift: ImageButton with SVG arrow -->
             <ImageButton
                 android:id="@+id/keyShift"
                 android:layout_width="0dp"
@@ -258,7 +235,6 @@
             <Button android:id="@+id/keyN" style="@style/KeyStyle" android:text="n"/>
             <Button android:id="@+id/keyApostrophe" style="@style/KeyStyle" android:text="'"/>
 
-            <!-- Backspace: ImageButton with SVG -->
             <ImageButton
                 android:id="@+id/keyBackspace"
                 android:layout_width="0dp"
@@ -274,7 +250,6 @@
 
         </LinearLayout>
 
-        <!-- ROW 4: ?123  😊  SPACE(language)  .  ENTER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -283,13 +258,12 @@
             android:paddingEnd="3dp"
             android:paddingTop="3dp">
 
-            <!-- ?123 toggle -->
             <Button
                 android:id="@+id/keyNumbers"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.6"
-                android:text="?123"
+                android:text="\&amp;?123"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/key_special_bg"
                 android:textSize="11sp"
@@ -298,7 +272,6 @@
                 android:layout_marginEnd="2dp"
                 android:padding="0dp"/>
 
-            <!-- Emoji button (SVG smiley) -->
             <ImageButton
                 android:id="@+id/keyEmoji"
                 android:layout_width="0dp"
@@ -312,7 +285,6 @@
                 android:layout_marginEnd="2dp"
                 android:padding="8dp"/>
 
-            <!-- Space bar: shows current language, long-press = switch keyboard -->
             <Button
                 android:id="@+id/keySpace"
                 android:layout_width="0dp"
@@ -328,7 +300,6 @@
                 android:layout_marginEnd="2dp"
                 android:padding="0dp"/>
 
-            <!-- Period key -->
             <Button
                 android:id="@+id/keyPeriod"
                 android:layout_width="0dp"
@@ -342,7 +313,6 @@
                 android:layout_marginEnd="2dp"
                 android:padding="0dp"/>
 
-            <!-- Enter: ImageButton with return arrow SVG -->
             <ImageButton
                 android:id="@+id/keyEnter"
                 android:layout_width="0dp"
@@ -360,9 +330,6 @@
 
     </LinearLayout>
 
-    <!-- ═══════════════════════════════════════════════════════
-         SYMBOL / NUMBER MODE LAYOUT (hidden by default)
-         ═══════════════════════════════════════════════════════ -->
     <LinearLayout
         android:id="@+id/layoutSymbolMode"
         android:layout_width="match_parent"
@@ -371,7 +338,6 @@
         android:paddingTop="2dp"
         android:visibility="gone">
 
-        <!-- ROW 1: 1 2 3 4 5 6 7 8 9 0 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -393,7 +359,6 @@
 
         </LinearLayout>
 
-        <!-- ROW 2: @ # $ % &amp; * ! ? / \ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -415,7 +380,6 @@
 
         </LinearLayout>
 
-        <!-- ROW 3: ( ) [ ] { } - + = : -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -437,7 +401,6 @@
 
         </LinearLayout>
 
-        <!-- ROW 4: ABC  '  SPACE  ,  BACKSPACE(sym)  ENTER(sym) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -446,7 +409,6 @@
             android:paddingEnd="3dp"
             android:paddingTop="3dp">
 
-            <!-- ABC: return to alpha mode -->
             <Button
                 android:id="@+id/keyABC"
                 android:layout_width="0dp"
@@ -461,7 +423,6 @@
                 android:layout_marginEnd="2dp"
                 android:padding="0dp"/>
 
-            <!-- Quote key -->
             <Button
                 android:id="@+id/keyQuote"
                 android:layout_width="0dp"
@@ -475,7 +436,6 @@
                 android:layout_marginEnd="2dp"
                 android:padding="0dp"/>
 
-            <!-- Space (symbol mode) -->
             <Button
                 android:id="@+id/keySpaceSymbol"
                 android:layout_width="0dp"
@@ -490,7 +450,6 @@
                 android:layout_marginEnd="2dp"
                 android:padding="0dp"/>
 
-            <!-- Comma -->
             <Button
                 android:id="@+id/keyComma"
                 android:layout_width="0dp"
@@ -504,7 +463,6 @@
                 android:layout_marginEnd="2dp"
                 android:padding="0dp"/>
 
-            <!-- Enter (symbol mode) -->
             <ImageButton
                 android:id="@+id/keyEnterSymbol"
                 android:layout_width="0dp"
