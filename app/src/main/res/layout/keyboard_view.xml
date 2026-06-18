@@ -156,7 +156,6 @@
         android:paddingTop="2dp"
         android:visibility="visible">
 
-        <!-- ROW 1: A Z E R T Y U I O P -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -165,20 +164,69 @@
             android:paddingEnd="3dp"
             android:paddingTop="3dp">
 
-            <Button android:id="@+id/keyA" style="@style/KeyStyle" android:text="a"/>
-            <Button android:id="@+id/keyZ" style="@style/KeyStyle" android:text="z"/>
-            <Button android:id="@+id/keyE" style="@style/KeyStyle" android:text="e"/>
-            <Button android:id="@+id/keyR" style="@style/KeyStyle" android:text="r"/>
-            <Button android:id="@+id/keyT" style="@style/KeyStyle" android:text="t"/>
-            <Button android:id="@+id/keyY" style="@style/KeyStyle" android:text="y"/>
-            <Button android:id="@+id/keyU" style="@style/KeyStyle" android:text="u"/>
-            <Button android:id="@+id/keyI" style="@style/KeyStyle" android:text="i"/>
-            <Button android:id="@+id/keyO" style="@style/KeyStyle" android:text="o"/>
-            <Button android:id="@+id/keyP" style="@style/KeyStyle" android:text="p"/>
+            <Button android:id="@+id/keyA"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="a" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyZ"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="z" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyE"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="e" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyR"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="r" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyT"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="t" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyY"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="y" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyU"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="u" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyI"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="i" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyO"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="o" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyP"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="p" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
 
         </LinearLayout>
 
-        <!-- ROW 2: Q S D F G H J K L M -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -187,20 +235,69 @@
             android:paddingEnd="16dp"
             android:paddingTop="3dp">
 
-            <Button android:id="@+id/keyQ" style="@style/KeyStyle" android:text="q"/>
-            <Button android:id="@+id/keyS" style="@style/KeyStyle" android:text="s"/>
-            <Button android:id="@+id/keyD" style="@style/KeyStyle" android:text="d"/>
-            <Button android:id="@+id/keyF" style="@style/KeyStyle" android:text="f"/>
-            <Button android:id="@+id/keyG" style="@style/KeyStyle" android:text="g"/>
-            <Button android:id="@+id/keyH" style="@style/KeyStyle" android:text="h"/>
-            <Button android:id="@+id/keyJ" style="@style/KeyStyle" android:text="j"/>
-            <Button android:id="@+id/keyK" style="@style/KeyStyle" android:text="k"/>
-            <Button android:id="@+id/keyL" style="@style/KeyStyle" android:text="l"/>
-            <Button android:id="@+id/keyM" style="@style/KeyStyle" android:text="m"/>
+            <Button android:id="@+id/keyQ"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="q" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyS"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="s" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyD"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="d" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyF"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="f" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyG"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="g" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyH"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="h" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyJ"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="j" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyK"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="k" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyL"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="l" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyM"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="m" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
 
         </LinearLayout>
 
-        <!-- ROW 3: SHIFT  W X C V B N '  BACKSPACE -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -222,13 +319,48 @@
                 android:layout_marginEnd="2dp"
                 android:padding="8dp"/>
 
-            <Button android:id="@+id/keyW" style="@style/KeyStyle" android:text="w"/>
-            <Button android:id="@+id/keyX" style="@style/KeyStyle" android:text="x"/>
-            <Button android:id="@+id/keyC" style="@style/KeyStyle" android:text="c"/>
-            <Button android:id="@+id/keyV" style="@style/KeyStyle" android:text="v"/>
-            <Button android:id="@+id/keyB" style="@style/KeyStyle" android:text="b"/>
-            <Button android:id="@+id/keyN" style="@style/KeyStyle" android:text="n"/>
-            <Button android:id="@+id/keyApostrophe" style="@style/KeyStyle" android:text="'"/>
+            <Button android:id="@+id/keyW"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="w" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyX"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="x" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyC"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="c" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyV"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="v" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyB"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="b" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyN"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="n" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyApostrophe"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="'" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
 
             <ImageButton
                 android:id="@+id/keyBackspace"
@@ -245,7 +377,6 @@
 
         </LinearLayout>
 
-        <!-- ROW 4: ?123  EMOJI  SPACE  .  ENTER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -264,7 +395,8 @@
                 android:background="@drawable/key_special_bg"
                 android:textSize="11sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
             <ImageButton
                 android:id="@+id/keyEmoji"
@@ -289,7 +421,8 @@
                 android:background="@drawable/key_space_bg"
                 android:textSize="12sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
             <Button
                 android:id="@+id/keyPeriod"
@@ -301,7 +434,8 @@
                 android:background="@drawable/key_normal_bg"
                 android:textSize="18sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
             <ImageButton
                 android:id="@+id/keyEnter"
@@ -320,7 +454,7 @@
 
     </LinearLayout>
 
-    <!-- SYMBOL / NUMBER MODE -->
+    <!-- SYMBOL MODE -->
     <LinearLayout
         android:id="@+id/layoutSymbolMode"
         android:layout_width="match_parent"
@@ -329,7 +463,6 @@
         android:paddingTop="2dp"
         android:visibility="gone">
 
-        <!-- ROW 1: 1 2 3 4 5 6 7 8 9 0 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -338,20 +471,69 @@
             android:paddingEnd="3dp"
             android:paddingTop="3dp">
 
-            <Button android:id="@+id/keyNum1" style="@style/KeyStyle" android:text="1"/>
-            <Button android:id="@+id/keyNum2" style="@style/KeyStyle" android:text="2"/>
-            <Button android:id="@+id/keyNum3" style="@style/KeyStyle" android:text="3"/>
-            <Button android:id="@+id/keyNum4" style="@style/KeyStyle" android:text="4"/>
-            <Button android:id="@+id/keyNum5" style="@style/KeyStyle" android:text="5"/>
-            <Button android:id="@+id/keyNum6" style="@style/KeyStyle" android:text="6"/>
-            <Button android:id="@+id/keyNum7" style="@style/KeyStyle" android:text="7"/>
-            <Button android:id="@+id/keyNum8" style="@style/KeyStyle" android:text="8"/>
-            <Button android:id="@+id/keyNum9" style="@style/KeyStyle" android:text="9"/>
-            <Button android:id="@+id/keyNum0" style="@style/KeyStyle" android:text="0"/>
+            <Button android:id="@+id/keyNum1"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="1" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyNum2"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="2" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyNum3"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="3" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyNum4"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="4" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyNum5"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="5" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyNum6"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="6" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyNum7"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="7" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyNum8"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="8" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyNum9"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="9" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyNum0"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="0" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
 
         </LinearLayout>
 
-        <!-- ROW 2: @ # $ % & * ! ? / \ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -360,20 +542,69 @@
             android:paddingEnd="3dp"
             android:paddingTop="3dp">
 
-            <Button android:id="@+id/keyAt"          style="@style/KeyStyle" android:text="@"/>
-            <Button android:id="@+id/keyHash"         style="@style/KeyStyle" android:text="#"/>
-            <Button android:id="@+id/keyDollar"       style="@style/KeyStyle" android:text="$"/>
-            <Button android:id="@+id/keyPercent"      style="@style/KeyStyle" android:text="%"/>
-            <Button android:id="@+id/keyAmpersand"    style="@style/KeyStyle" android:text="&amp;"/>
-            <Button android:id="@+id/keyAsterisk"     style="@style/KeyStyle" android:text="*"/>
-            <Button android:id="@+id/keyExclaim"      style="@style/KeyStyle" android:text="!"/>
-            <Button android:id="@+id/keyQuestion"     style="@style/KeyStyle" android:text="?"/>
-            <Button android:id="@+id/keySlash"        style="@style/KeyStyle" android:text="/"/>
-            <Button android:id="@+id/keyBackslashSym" style="@style/KeyStyle" android:text="\\"/>
+            <Button android:id="@+id/keyAt"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="@" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyHash"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="#" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyDollar"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="$" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyPercent"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="%" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyAmpersand"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="&amp;" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyAsterisk"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="*" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyExclaim"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="!" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyQuestion"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="?" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keySlash"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="/" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyBackslashSym"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="\\" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
 
         </LinearLayout>
 
-        <!-- ROW 3: ( ) [ ] { } - + = : -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -382,20 +613,69 @@
             android:paddingEnd="3dp"
             android:paddingTop="3dp">
 
-            <Button android:id="@+id/keyParenOpen"   style="@style/KeyStyle" android:text="("/>
-            <Button android:id="@+id/keyParenClose"  style="@style/KeyStyle" android:text=")"/>
-            <Button android:id="@+id/keyBracketOpen" style="@style/KeyStyle" android:text="["/>
-            <Button android:id="@+id/keyBracketClose" style="@style/KeyStyle" android:text="]"/>
-            <Button android:id="@+id/keyBraceOpen"   style="@style/KeyStyle" android:text="{"/>
-            <Button android:id="@+id/keyBraceClose"  style="@style/KeyStyle" android:text="}"/>
-            <Button android:id="@+id/keyMinus"       style="@style/KeyStyle" android:text="-"/>
-            <Button android:id="@+id/keyPlus"        style="@style/KeyStyle" android:text="+"/>
-            <Button android:id="@+id/keyEqual"       style="@style/KeyStyle" android:text="="/>
-            <Button android:id="@+id/keyColon"       style="@style/KeyStyle" android:text=":"/>
+            <Button android:id="@+id/keyParenOpen"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="(" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyParenClose"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text=")" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyBracketOpen"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="[" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyBracketClose"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="]" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyBraceOpen"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="{" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyBraceClose"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="}" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyMinus"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="-" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyPlus"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="+" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyEqual"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text="=" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
+            <Button android:id="@+id/keyColon"
+                android:layout_width="0dp" android:layout_height="match_parent"
+                android:layout_weight="1" android:text=":" android:textColor="#FFFFFF"
+                android:background="@drawable/key_normal_bg" android:textSize="17sp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp"
+                android:padding="0dp" android:gravity="center"/>
 
         </LinearLayout>
 
-        <!-- ROW 4: ABC  "  SPACE  ,  BACKSPACE  ENTER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -414,7 +694,8 @@
                 android:background="@drawable/key_special_bg"
                 android:textSize="11sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
             <Button
                 android:id="@+id/keyQuote"
@@ -426,7 +707,8 @@
                 android:background="@drawable/key_normal_bg"
                 android:textSize="16sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
             <Button
                 android:id="@+id/keySpaceSymbol"
@@ -438,7 +720,8 @@
                 android:background="@drawable/key_space_bg"
                 android:textSize="12sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
             <Button
                 android:id="@+id/keyComma"
@@ -450,7 +733,8 @@
                 android:background="@drawable/key_normal_bg"
                 android:textSize="18sp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:padding="0dp"/>
 
             <ImageButton
                 android:id="@+id/keyBackspaceSymbol"
